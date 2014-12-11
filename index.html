@@ -1,0 +1,34 @@
+
+<!DOCTYPE html>
+<html lang = "en">
+
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Temp Monitor</title>
+
+	<!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+	<body onload="window.setInterval(function(){doCountdown()},1000);">
+
+		<h1>The Kegerator Temperature</h1>
+
+		<font size="6"><p id="infoP"></p></font>
+		<p id="countdown"></p>
+
+		<form id="theForm">
+			New Temp: <input type="text" name="newTemp">
+			<button type="button"  onclick="setNewTemp()">New Temp!</button>
+		</form>
+		<br>
+
+	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/sparkCoreLogic.js"></script>
+	</body>
+
+
+</html>
