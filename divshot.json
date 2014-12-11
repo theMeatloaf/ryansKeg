@@ -1,3 +1,6 @@
 {
-  "name": "ryanskeg"
+  "name": "ryanskeg3",
+  "root": "dist",
+  "clean_urls": true,
+  "error_page": "error.html"
 }
