@@ -2,6 +2,16 @@
 
 body { background-color: #0e83cd }
 
+h1.big
+{
+  font-size: 92px;
+  width: 100%;
+  color:white;
+  font-family: 'Lato', sans-serif;
+  text-align: left;
+  margin-left: 5%;
+}
+
 h2 {
   margin: 0 auto;
   width: 400px;
@@ -24,7 +34,7 @@ h2 {
 
 #liquid {
   background-color: #edaf32;
-  border: 10px solid #edaf32;
+  border: 2px solid #edaf32;
   bottom: 0;
   height: 0px;
   overflow: hidden;
@@ -35,7 +45,7 @@ h2 {
   background-color: rgba(255, 255, 255, 0.25);
   bottom: -10px;
   content: '';
-  height: 400px;
+  height: 110%;
   left: -40px;
   position: absolute;
   transform: rotate(30deg);
@@ -101,7 +111,7 @@ h2 {
 /* Foam */
 
 .beer-foam {
-  z-index: 999;
+  z-index: 998;
   position: absolute;
   bottom: -80px;
   left: -10%;
@@ -112,14 +122,41 @@ h2 {
 }
 
 .beer-foam img {
-  width:100%;
+  min-width:1500px;
+  max-width: none;
+  width: 100%px;
   height: 100%;
 }
-.beer-foam h2 {
+.beer-foam h3 {
   position: relative;
   color: #130f30;
   top: -125px;
   text-align: center;
+}
+
+
+/*
+ Beer Logo and Data in Foam
+*/
+img.logo{
+  display: block;
+  position: relative;
+  top: 15px;
+  max-height: 160px;
+  margin-left: auto;
+  margin-right: auto
+}
+
+table {
+    width: 80%;
+    left:10%;
+    border: 0px solid black;
+    position: relative;
+}
+
+tr,td
+{
+      border: 0px solid black;
 }
 
 /* Drunk Text */
