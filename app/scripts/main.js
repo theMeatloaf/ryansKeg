@@ -21,13 +21,13 @@ function animateToPercent(percent) {
   animateToPoint(point);
 }
 
+function changePercentFromForm() {
+  var value = $('#temp').val();
+  animateToPercent(value);
+}
+
 $(document).ready(function() {
-  changePercent();
+  changePercentFromForm();
 });
 
 
-function changePercent() {
-  var value = $('#temp').val();
-  animateToPercent(value);
-  console.log('value = ' + value);
-}
