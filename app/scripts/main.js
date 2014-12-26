@@ -5,7 +5,7 @@ console.log('\'Allo \'Allo!');
 $(document).ready(function() {
 
   
-  var animateTo = 600;
+  var animateTo = 300;
 
   $('#liquid') // I Said Fill 'Er Up!
     .delay(1000)
