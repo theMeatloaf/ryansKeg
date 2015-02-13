@@ -59,7 +59,7 @@ module.exports = function (grunt) {
         files: [
           '<%= config.app %>/{,*/}*.html',
           '.tmp/styles/{,*/}*.css',
-          '<%= config.app %>/images/{,*/}*'
+          'ƒ/images/{,*/}*'
         ]
       }
     },
@@ -165,7 +165,7 @@ module.exports = function (grunt) {
       app: {
         ignorePath: /^\/|\.\.\//,
         src: ['<%= config.app %>/index.html'],
-        exclude: ['bower_components/bootstrap/dist/js/bootstrap.js']
+        exclude: ['/bower_components/bootstrap/dist/js/bootstrap.js']
       }
     },
 
@@ -298,7 +298,7 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           dot: true,
-          cwd: 'bower_components/bootstrap/dist',
+          cwd: '/bower_components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= config.dist %>'
         }]
