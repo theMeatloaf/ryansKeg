@@ -5,7 +5,7 @@
     <title>Ryan's Keg</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="shortcut icon" href="/6df2b309.favicon.ico">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(.) styles/vendor.css -->
     <!-- bower:css -->
@@ -15,26 +15,24 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-
     <body onload="getTemp();">
   </head>
   <body>
-  <h1 class="big">Ryan's Keg:</h1> 
-
-      <div id="container">
-        <label>between 0 and 1</label>
-        <input id="temp" type="text" value="0.3">
-        <button onClick="changePercentFromForm()">go</button> 
+    <div id="container">
+       <div class="righty">
+        <button type="button" class="btn btn-link btn-lg" onclick="goAdmin();">
+            <font color="white"><span class='glyphicon glyphicon-cog' aria-hidden='true'></span></font>
+        </button>
+      </div>
+      <h1 class="big">Ryan's Keg:</h1>
 
         <div class="beer-foam">
             <img src="images/foam.svg">
             <table>
                <tr>
-                <td>
-                  <h3 id="Ctemp">37.8&deg;F<font color="red"><span class="glyphicon glyphicon-arrow-up" aria-hidden="true"></span></font></h3>
-                </td>
-                <td><h3>132 Beers Left</h3></td>    
-                <td><h3 id="Htemp">36&deg;F</h3></td>
+                <td><h3 id="Ctemp"></h3></td>
+                <td><h3 id="Nbeers">Loading...</h3></td>    
+                <td><h3 id="Htemp"></h3></td>
               </tr>
             </table>
         </div>
@@ -45,10 +43,9 @@
             <div class="bubble bubble3"></div>
             <div class="bubble bubble4"></div>
             <div class="bubble bubble5"></div>
-            <img class="logo" src="images/logo.png">
+            <img class="logo" src="images/logo.jpg">
           </div>
-      </div>
-
+    </div>
 
 
     <!-- build:js(.) scripts/vendor.js -->
@@ -84,75 +81,14 @@
 
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/main.js"></script>
+        <script src="scripts/sparkCoreLogic.js"></script>
         <!-- endbuild -->
 
         <script>
-          function getTemp()
-          {
-                var tempUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/temperature?access_token=0211d4fd404edb3d5f319486a087b2a51da511c0";
-              var xmlHttp = null;
-
-              xmlHttp = new XMLHttpRequest();
-              xmlHttp.open( "GET", tempUrl, false );
-              xmlHttp.send( null );
-              
-              var jsonObj = JSON.parse(xmlHttp.responseText);
-              
-              document.getElementById("Ctemp").innerHTML = jsonObj.result +"&deg;F" ;
-              
-           //   + " &degF <br>"+
-           //     "Last Update: " + jsonObj.coreInfo.last_heard + "<br>"+
-           //     "Connected? " + jsonObj.coreInfo.connected;
-              getFridgeStatus();
-
-              return;
-          }
-
-          function getFridgeStatus()
-          {
-                var statusUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/fridgeStatus?access_token=0211d4fd404edb3d5f319486a087b2a51da511c0";
-              var xmlHttp = null;
-
-              xmlHttp = new XMLHttpRequest();
-              xmlHttp.open( "GET", statusUrl, false );
-              xmlHttp.send( null );
-              
-              var jsonObj = JSON.parse(xmlHttp.responseText);
-
-              if(jsonObj.result == true)
-              {
-                document.getElementById("Ctemp").innerHTML = document.getElementById("Ctemp").innerHTML 
-                + "<font color='blue'><span class='glyphicon glyphicon-arrow-down' aria-hidden='true'></span></font>";
-              }else
-              {
-                document.getElementById("Ctemp").innerHTML = document.getElementById("Ctemp").innerHTML 
-                + "<font color='red'><span class='glyphicon glyphicon-arrow-up' aria-hidden='true'></span></font>";
-              }
-
-              getHoldTemp();
-              
-              return;
-          }
-
-          function getHoldTemp()
-          {
-                var statusUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/goalTemp?access_token=0211d4fd404edb3d5f319486a087b2a51da511c0";
-              var xmlHttp = null;
-
-              xmlHttp = new XMLHttpRequest();
-              xmlHttp.open( "GET", statusUrl, false );
-              xmlHttp.send( null );
-              
-              var jsonObj = JSON.parse(xmlHttp.responseText);
-              var value = jsonObj.result;
-//              value = Number(value).toFixed(0);
-
-             document.getElementById("Htemp").innerHTML = "<font color='gray'>"+ value +"&deg;F</font>" ;
-              
-              return;
-          }
-
-          
+        function goAdmin()
+        {
+          this.location.replace("/admin/password.html");
+        }
         </script>
 </body>
 </html>

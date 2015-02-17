@@ -1,95 +1,69 @@
 'use strict';
 
-// function getFridgeStatus()
-// {
-//     	var statusUrl = 'https://api.spark.io/v1/devices/50ff6d065067545652220387/fridgeStatus?access_token=48c89a159ff81b36491232b4bd8391ab95d5306f';
-//    	var xmlHttp = null;
+          function getTemp()
+          {
+                var tempUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/temperature?access_token=0211d4fd404edb3d5f319486a087b2a51da511c0";
+              var xmlHttp = null;
 
-//    	xmlHttp = new XMLHttpRequest();
-//    	xmlHttp.open( 'GET', statusUrl, false );
-//    	xmlHttp.send( null );
-   	
-//    	var jsonObj = JSON.parse(xmlHttp.responseText);
-    
-//    	document.getElementById('infoP').innerHTML = document.getElementById('infoP').innerHTML +
-//    	'<br> Fridge Running: ' + jsonObj.result ;
-   	
-//    	return;
-// }
+              xmlHttp = new XMLHttpRequest();
+              xmlHttp.open( "GET", tempUrl, false );
+              xmlHttp.send( null );
+              
+              var jsonObj = JSON.parse(xmlHttp.responseText);
+              
+              document.getElementById("Ctemp").innerHTML = jsonObj.result +"&deg;F" ;
+              
+           //   + " &degF <br>"+
+           //     "Last Update: " + jsonObj.coreInfo.last_heard + "<br>"+
+           //     "Connected? " + jsonObj.coreInfo.connected;
+              getFridgeStatus();
 
-// function getHoldTemp() {
-//       var holdUrl = 'https://api.spark.io/v1/devices/50ff6d065067545652220387/goalTemp?access_token=48c89a159ff81b36491232b4bd8391ab95d5306f';
-//     var xmlHttp = null;
+              return;
+          }
 
-//     xmlHttp = new XMLHttpRequest();
-//     xmlHttp.open( 'GET', holdUrl, false );
-//     xmlHttp.send( null );
-    
-//     var jsonObj = JSON.parse(xmlHttp.responseText);
-    
-//     document.getElementById('infoP').innerHTML = document.getElementById('infoP').innerHTML +
-//     '<br> Goal Temperature: ' + jsonObj.result ;
-    
-//     getFridgeStatus();
-    
-//     return;
-// }
+          function getFridgeStatus()
+          {
+                var statusUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/fridgeStatus?access_token=0211d4fd404edb3d5f319486a087b2a51da511c0";
+              var xmlHttp = null;
 
-// function getTemp() {
-//       //todo: make login get access token
-//       var tempUrl = 'https://api.spark.io/v1/devices/50ff6d065067545652220387/temperature?access_token=48c89a159ff81b36491232b4bd8391ab95d5306f';
-//     var xmlHttp = null;
+              xmlHttp = new XMLHttpRequest();
+              xmlHttp.open( "GET", statusUrl, false );
+              xmlHttp.send( null );
+              
+              var jsonObj = JSON.parse(xmlHttp.responseText);
 
-//     xmlHttp = new XMLHttpRequest();
-//     xmlHttp.open( 'GET', tempUrl, false );
-//     xmlHttp.send( null );
-    
-//     var jsonObj = JSON.parse(xmlHttp.responseText);
-    
-//     document.getElementById('infoP').innerHTML =
-//     'Current Temperature: ' + jsonObj.result ;
-    
-//  //   + ' &degF <br>'+
-//  //     'Last Update: ' + jsonObj.coreInfo.last_heard + '<br>'+
-//  //     'Connected? ' + jsonObj.coreInfo.connected;
-  
-//     getHoldTemp(); //get goal temp next
-//     return;
-// }
+              if(jsonObj.result == true)
+              {
+                document.getElementById("Ctemp").innerHTML = document.getElementById("Ctemp").innerHTML 
+                + "<font color='blue'><span class='glyphicon glyphicon-arrow-down' aria-hidden='true'></span></font>";
+              }else
+              {
+                document.getElementById("Ctemp").innerHTML = document.getElementById("Ctemp").innerHTML 
+                + "<font color='red'><span class='glyphicon glyphicon-arrow-up' aria-hidden='true'></span></font>";
+              }
+
+              getHoldTemp();
+              
+              return;
+          }
+
+          function getHoldTemp()
+          {
+                var statusUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/goalTemp?access_token=0211d4fd404edb3d5f319486a087b2a51da511c0";
+              var xmlHttp = null;
+
+              xmlHttp = new XMLHttpRequest();
+              xmlHttp.open( "GET", statusUrl, false );
+              xmlHttp.send( null );
+              
+              var jsonObj = JSON.parse(xmlHttp.responseText);
+              var value = jsonObj.result;
+              value = Number(value).toFixed(0);
+
+             document.getElementById("Htemp").innerHTML = "&nbsp;&nbsp;&nbsp;<font color='gray'>"+ value +"&deg;F</font>" ;
+              
+              document.getElementById("Nbeers").innerHTML = "&nbsp;130 beers left" ;
 
 
-// function setNewTemp()
-// {
-// 	var formElement = document.getElementById('theForm');
-// 	var formData = new FormData();
-// 	formData.append('args', formElement.elements[0].value);
-	
-// 	var setTempUrl = 'https://api.spark.io/v1/devices/50ff6d065067545652220387/setHoldTemp?access_token=48c89a159ff81b36491232b4bd8391ab95d5306f';
-//    	var xmlHttp = null;
-
-//    	xmlHttp = new XMLHttpRequest();
-//    	xmlHttp.open( 'POST', setTempUrl);
-//    	xmlHttp.send( formData );
-   	
-//    	formElement.elements[0].value = '';
-   	
-// 	return;
-// } 
-
-// function doCountdown() {
-//   if(count === 6)
-//   {
-//     //first time through
-//     getTemp();
-//   }
-//   if(count >= 0)
-//   {
-//     var countTag = document.getElementById('countdown');
-//     countTag.innerHTML = 'Updating in ' + count + ' seconds';
-//     count--;
-//   }else
-//   {
-//     count = 5;
-//     getTemp();
-//   }
-// }
+              return;
+          }

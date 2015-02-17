@@ -27,7 +27,7 @@ function changePercentFromForm() {
 }
 
 $(document).ready(function() {
-  changePercentFromForm();
+  animateToPercent(0.3);
 });
 
 

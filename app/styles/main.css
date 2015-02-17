@@ -4,8 +4,10 @@ body { background-color: #0e83cd }
 
 h1.big
 {
+  position: absolute;
   font-size: 92px;
-  width: 100%;
+  width: 85%;
+  top: -10px;
   color:white;
   font-family: 'Lato', sans-serif;
   text-align: left;
@@ -31,6 +33,11 @@ h2 {
 }
 
 #container div { position: absolute; }
+
+#container div.righty {
+  position: relative;
+  text-align: right;
+}
 
 #liquid {
   background-color: #edaf32;
