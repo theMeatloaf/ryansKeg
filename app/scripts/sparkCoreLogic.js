@@ -1,69 +1,68 @@
 'use strict';
 
+var leftValue;
+var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
+
           function getTemp()
           {
-                var tempUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/temperature?access_token=0211d4fd404edb3d5f319486a087b2a51da511c0";
-              var xmlHttp = null;
+              leftValue = null;
 
-              xmlHttp = new XMLHttpRequest();
-              xmlHttp.open( "GET", tempUrl, false );
-              xmlHttp.send( null );
-              
-              var jsonObj = JSON.parse(xmlHttp.responseText);
-              
-              document.getElementById("Ctemp").innerHTML = jsonObj.result +"&deg;F" ;
-              
-           //   + " &degF <br>"+
-           //     "Last Update: " + jsonObj.coreInfo.last_heard + "<br>"+
-           //     "Connected? " + jsonObj.coreInfo.connected;
+              var tempUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/temperature?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+
+              $.get(tempUrl, function(data, status){
+                if (leftValue) {
+                  leftValue = data.result +"&deg;F" + leftValue;
+                }else
+                {
+                  leftValue = data.result +"&deg;F";
+                }
+                if(leftValue.length>95)$("#Ctemp").html(leftValue);
+              });
               getFridgeStatus();
-
-              return;
           }
 
           function getFridgeStatus()
           {
-                var statusUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/fridgeStatus?access_token=0211d4fd404edb3d5f319486a087b2a51da511c0";
-              var xmlHttp = null;
+              var statusUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/fridgeStatus?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
 
-              xmlHttp = new XMLHttpRequest();
-              xmlHttp.open( "GET", statusUrl, false );
-              xmlHttp.send( null );
-              
-              var jsonObj = JSON.parse(xmlHttp.responseText);
-
-              if(jsonObj.result == true)
-              {
-                document.getElementById("Ctemp").innerHTML = document.getElementById("Ctemp").innerHTML 
-                + "<font color='blue'><span class='glyphicon glyphicon-arrow-down' aria-hidden='true'></span></font>";
-              }else
-              {
-                document.getElementById("Ctemp").innerHTML = document.getElementById("Ctemp").innerHTML 
-                + "<font color='red'><span class='glyphicon glyphicon-arrow-up' aria-hidden='true'></span></font>";
-              }
+              $.get(statusUrl, function(data, status){
+                if(data.result == true)
+                {
+                  var downArrow = "<font color='blue'><span class='glyphicon glyphicon-arrow-down' aria-hidden='true'></span></font>";
+                  if(leftValue)
+                  {
+                    leftValue = leftValue + downArrow;
+                  }else
+                  {
+                    leftValue = downArrow;
+                  }
+                }else
+                {
+                  var upArrow = "<font color='red'><span class='glyphicon glyphicon-arrow-up' aria-hidden='true'></span></font>";
+                   if(leftValue)
+                  {
+                    leftValue = leftValue + upArrow;
+                  }else
+                  {
+                    leftValue = upArrow;
+                  }
+                }
+                if(leftValue.length>95)$("#Ctemp").html(leftValue);
+              });
 
               getHoldTemp();
-              
-              return;
           }
 
           function getHoldTemp()
           {
-                var statusUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/goalTemp?access_token=0211d4fd404edb3d5f319486a087b2a51da511c0";
-              var xmlHttp = null;
+              var holdUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/goalTemp?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
 
-              xmlHttp = new XMLHttpRequest();
-              xmlHttp.open( "GET", statusUrl, false );
-              xmlHttp.send( null );
-              
-              var jsonObj = JSON.parse(xmlHttp.responseText);
-              var value = jsonObj.result;
+              $.get(holdUrl, function(data, status){
+              var value = data.result;
               value = Number(value).toFixed(0);
-
-             document.getElementById("Htemp").innerHTML = "&nbsp;&nbsp;&nbsp;<font color='gray'>"+ value +"&deg;F</font>" ;
-              
-              document.getElementById("Nbeers").innerHTML = "&nbsp;130 beers left" ;
-
-
+                $("#Htemp").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='gray'>"+ value +"&deg;F</font>");
+                $("#Nbeers").html("On Tap:&nbsp;&nbsp;");
+              });
+          
               return;
           }

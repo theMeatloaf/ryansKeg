@@ -125,22 +125,21 @@ h2 {
   right: -10%;
   width: 120%;
   margin: 0 auto;
-  /*background: url(./images/foam.svg);*/
 }
 
-.beer-foam img {
+.beer-foam img.foam {
   min-width:1500px;
   max-width: none;
   width: 100%px;
   height: 100%;
 }
+
 .beer-foam h3 {
   position: relative;
   color: #130f30;
   top: -125px;
   text-align: center;
 }
-
 
 /*
  Beer Logo and Data in Foam
@@ -152,6 +151,17 @@ img.logo{
   max-height: 160px;
   margin-left: auto;
   margin-right: auto
+}
+
+
+.beer-foam img.loader{
+  text-align: center;
+  margin-right: auto;
+  margin-left: auto;
+  margin-bottom: -20px;
+  position: relative;
+  height: 50px;
+  width: 50px;
 }
 
 table {
@@ -352,27 +362,29 @@ body {
   margin-top: 28px;
 }
 
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-  .container {
-    max-width: 730px;
+/* Really narrow Phones */
+@media screen and (max-width: 350px){
+
+  .beer-foam h3 {
+    position: relative;
+    color: #130f30;
+    font-size: 20px;
+    top: -125px;
+    text-align: center;
   }
 
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
+}
 
-  /* Space out the masthead */
-  .header {
-    margin-bottom: 30px;
-  }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
+@media screen and (max-height: 490px){
+  h1.big
+  {
+    position: absolute;
+    font-size: 70px;
+    width: 85%;
+    top: -10px;
+    color:white;
+    font-family: 'Lato', sans-serif;
+    text-align: left;
+    margin-left: 5%;
   }
 }

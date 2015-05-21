@@ -191,7 +191,7 @@ module.exports = function (grunt) {
       options: {
         dest: '<%= config.dist %>'
       },
-      html: '<%= config.app %>/index.html'
+      html: ['<%= config.app %>/index.html']
     },
 
     // Performs rewrites based on rev and the useminPrepare configuration
@@ -203,7 +203,7 @@ module.exports = function (grunt) {
           '<%= config.dist %>/styles'
         ]
       },
-      html: ['<%= config.dist %>/index.html'],
+      html: ['<%= config.dist %>/index.html','<%= config.dist %>/admin/{,*/}*.html'],
       css: ['<%= config.dist %>/styles/{,*/}*.css']
     },
 
@@ -298,7 +298,7 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           dot: true,
-          cwd: '/bower_components/bootstrap/dist',
+          cwd: 'bower_components/bootstrap/dist/',
           src: 'fonts/*',
           dest: '<%= config.dist %>'
         }]
