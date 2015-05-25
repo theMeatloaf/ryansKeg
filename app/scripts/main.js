@@ -21,6 +21,7 @@ function getBeers()
 function animateToBeers(beersLeft) {
   var height = window.innerHeight;
   var point = Math.max(150,(height*0.7) * (beersLeft / 53.0));
+  point = Math.min(point,height*0.62);
 
   $('#liquid') // I Said Fill 'Er Up!
     .delay(1000)
@@ -29,7 +30,7 @@ function animateToBeers(beersLeft) {
     },
     {
       duration:2500,
-      easing:'easeOutCubic'
+      easing:'linear'
     });
 
   $('.beer-foam') // Keep that Foam Rollin' Toward the Top! Yahooo!
@@ -39,7 +40,7 @@ function animateToBeers(beersLeft) {
       }, 
       {
             duration: 2500,
-            easing:'easeOutCubic',
+            easing:'linear',
             progress: function(animation, progress) {
                 var curVal = Number(progress*beersLeft).toFixed(0);
                $("#Nbeers").html("&nbsp&nbsp"+curVal +" Beers Left &nbsp;&nbsp;");
