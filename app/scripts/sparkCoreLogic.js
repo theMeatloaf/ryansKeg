@@ -60,9 +60,12 @@ var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
               $.get(holdUrl, function(data, status){
               var value = data.result;
               value = Number(value).toFixed(0);
-                $("#Htemp").html("&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font color='gray'>"+ value +"&deg;F</font>");
-                $("#Nbeers").html("On Tap:&nbsp;&nbsp;");
+                $("#Htemp").html("&nbsp;&nbsp;&nbsp;<font color='gray'>"+ value +"&deg;F</font>");
               });
           
               return;
           }
+
+
+
+

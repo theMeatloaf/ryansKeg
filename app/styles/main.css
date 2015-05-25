@@ -4,14 +4,14 @@ body { background-color: #0e83cd }
 
 h1.big
 {
-  position: absolute;
-  font-size: 92px;
+  position: relative;
+  font-size: 96px; font-size: 10vw;
   width: 85%;
-  top: -10px;
+  top: 15px;
   color:white;
   font-family: 'Lato', sans-serif;
   text-align: left;
-  margin-left: 5%;
+  margin-left: 10%;
 }
 
 h2 {
@@ -35,6 +35,7 @@ h2 {
 #container div { position: absolute; }
 
 #container div.righty {
+  z-index: 999;
   position: relative;
   text-align: right;
 }
@@ -378,13 +379,14 @@ body {
 @media screen and (max-height: 490px){
   h1.big
   {
-    position: absolute;
-    font-size: 70px;
-    width: 85%;
-    top: -10px;
-    color:white;
-    font-family: 'Lato', sans-serif;
-    text-align: left;
-    margin-left: 5%;
+  position: relative;
+  font-size: 96px; font-size: 8vw;
+  width: 85%;
+  top: 15px;
+  bottom:10px;
+  color:white;
+  font-family: 'Lato', sans-serif;
+  text-align: left;
+  margin-left: 10%;
   }
 }
