@@ -30,7 +30,7 @@ function animateToBeers(beersLeft) {
     },
     {
       duration:2500,
-      easing:'linear'
+      easing:'easeOutCubic'
     });
 
   $('.beer-foam') // Keep that Foam Rollin' Toward the Top! Yahooo!
@@ -40,7 +40,7 @@ function animateToBeers(beersLeft) {
       }, 
       {
             duration: 2500,
-            easing:'linear',
+            easing:'easeOutCubic',
             progress: function(animation, progress) {
                 var curVal = Number(progress*beersLeft).toFixed(0);
                $("#Nbeers").html("&nbsp&nbsp"+curVal +" Beers Left &nbsp;&nbsp;");
