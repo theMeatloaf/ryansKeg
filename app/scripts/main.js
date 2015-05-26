@@ -13,9 +13,10 @@ function getBeers()
       var value = data.result;
       value = Number(value).toFixed(0);
       animateToBeers(value);
-    });
 
-    return;
+      //sparkcoreLogic.js to load all the other values
+      loadAll();
+    });
 }
 
 function animateToBeers(beersLeft) {

@@ -15,7 +15,7 @@
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
     <!-- endbuild -->
-    <body onload="setTimeout(function() { getTemp(); }, 100);  window.setInterval(function(){getTemp()},10000);">
+    <body onload="window.setInterval(function(){getTemp(false)},10000);">
   </head>
   <body>
     <div id="container">
