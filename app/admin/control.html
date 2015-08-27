@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html class="no-js">
+<head>
+  <meta charset=utf-8 />
+  <title>Air Conditioner Control</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <!-- build:css(.) ../styles/vendor.css -->
+  <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+  <!-- endbuild -->
+</head>
+
+<body>
+  <div class="container-fluid" >
+    <br>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4" align="center"><img src="../images/load.gif" id="loader" style="visibility:hidden;"></div>
+      <div class="col-md-4"></div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4" align="center"><button class="btn btn-danger btn-lg" type="button" id="powerButt"><h1>TOGGLE POWER</h1></button></div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4" align="center"><button class="btn btn-info btn-lg" type="button" id="coolButt"><h1>SET COOL MODE</h1></button></div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <br>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4" align="center"><button class="btn btn-warning btn-lg" type="button" id="econButt"><h1>SET ECON MODE</h1></button>
+      </div>
+      <div class="col-md-4"></div>
+    </div>
+
+  </div>
+
+
+
+
+  <!-- build:js(.) ../scripts/vendor.js -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+  <!-- endbuild -->
+
+  <script>
+  $( "#powerButt" ).click(function( event ) {
+      runSparkFunction("togglePower");
+      event.preventDefault();
+  });
+
+  $( "#coolButt" ).click(function( event ) {
+      runSparkFunction("setModeCool");
+      event.preventDefault();
+  });
+
+  $( "#econButt" ).click(function( event ) {
+      runSparkFunction("setModeEcon");
+      event.preventDefault();
+  });
+
+  function runSparkFunction(functionName)
+  {
+    $(".btn").prop('disabled', true);
+    $("#loader").css('visibility', 'visible');
+    var setTempUrl = "https://api.spark.io/v1/devices/200033001447343339383037/" + functionName + "?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+   $.post(setTempUrl,
+    function(data,status){
+        $("#loader").css('visibility', 'hidden');
+        $(".btn").prop('disabled', false);
+    });
+  }
+
+  </script>
+
+
+</body>
+</html>
