@@ -19,6 +19,31 @@ function getBeers()
     });
 }
 
+function loadGallery()
+{
+    Parse.initialize("BbItMQIZYMRPVXCHHp7veIWVtjsfRoG7U0QA3tZg", "Wcseuh8TpmsTm7cYPmSkFF9oBVtlLG5BtRlYgXjM");
+  
+    var beerEntry = Parse.Object.extend("beerEntry");
+    var query = new Parse.Query(beerEntry);
+    query.descending("createdAt");
+    query.limit(10);
+    query.find({
+      success: function(results) {
+        //got objects
+        for (var i = 0; i < results.length-2; i++) {
+          var object = results[i];
+          $('.galleria').append("<img src='"+object.get("image").url()+"'>");
+        }
+
+          Galleria.loadTheme('scripts/themes/classic/galleria.classic.min.js');
+          Galleria.run('.galleria');
+      },
+      error: function(error) {
+        console.log("Error: " + error.code + " " + error.message);
+      }
+    });
+}
+
 function animateToBeers(beersLeft) {
   var height = window.innerHeight;
   var point = Math.max(150,(height*0.7) * (beersLeft / 53.0));

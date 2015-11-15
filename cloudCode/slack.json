@@ -1,0 +1,12 @@
+{
+    "eventName": "drinkBeer",
+    "url": "https://api.parse.com/1/functions/drinkBeer",
+    "requestType": "POST",
+    "headers":{
+        "X-Parse-Application-Id":"BbItMQIZYMRPVXCHHp7veIWVtjsfRoG7U0QA3tZg",
+        "X-Parse-REST-API-Key":"ZXfMujXBelbXMjAyl6CiPE2c9AFPmILi8uhpAR98",
+        "Content-Type":"application/json"
+    },
+    "mydevices": true,
+    "noDefaults": true
+}
