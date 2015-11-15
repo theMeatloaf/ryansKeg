@@ -23,6 +23,15 @@ h2 {
   color: whiteSmoke;
 }
 
+.righty h3{
+  position: relative;
+  font-size: 18px;
+  top: -20px;
+  text-align: left;
+  font-family: 'Lato', sans-serif;
+  color: whiteSmoke;
+}
+
 #container {
   position: absolute;
   top: 0;

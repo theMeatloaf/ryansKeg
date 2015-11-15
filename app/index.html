@@ -14,12 +14,14 @@
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/lightbox.css">
     <!-- endbuild -->
     <body onload="window.setInterval(function(){getTemp(false)},10000);">
   </head>
   <body>
     <div id="container">
        <div class="righty">
+        <div id="gallery"></div>
         <button type="button" class="btn btn-link btn-lg" onclick="goAdmin();">
             <font color="white"><span class='glyphicon glyphicon-cog' aria-hidden='true'></span></font>
         </button>
@@ -56,6 +58,9 @@
     <!-- added this ref for animations -->
     <script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
+    <!-- added this ref for Parse Queries -->
+    <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
       (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -84,6 +89,7 @@
         <!-- build:js({app,.tmp}) scripts/main.js -->
         <script src="scripts/main.js"></script>
         <script src="scripts/sparkCoreLogic.js"></script>
+        <script src="scripts/lightbox.js"></script>
         <!-- endbuild -->
 
         <script>

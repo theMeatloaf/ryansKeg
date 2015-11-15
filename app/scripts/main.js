@@ -14,6 +14,9 @@ function getBeers()
       value = Number(value).toFixed(0);
       animateToBeers(value);
 
+      //load images for gallery
+      loadGallery();
+
       //sparkcoreLogic.js to load all the other values
       loadAll();
     });
@@ -26,22 +29,39 @@ function loadGallery()
     var beerEntry = Parse.Object.extend("beerEntry");
     var query = new Parse.Query(beerEntry);
     query.descending("createdAt");
-    query.limit(10);
+    query.limit(15);
     query.find({
       success: function(results) {
         //got objects
-        for (var i = 0; i < results.length-2; i++) {
+        for (var i = 0; i < results.length; i++) {
           var object = results[i];
-          $('.galleria').append("<img src='"+object.get("image").url()+"'>");
+          var date = object.get("createdAt");
+          var dateString = date.toLocaleString('en-US');
+          var html = "<a href='" + object.get("image").url() + "' data-lightbox='gallery' data-title='"+
+          dateString+"'>";
+          if(i==0)
+          {
+            html = html +"<h3>Recent<br>Drinkers</h3>";
+          }
+          html = html+"</a>"; 
+          $('#gallery').append(html);
         }
-
-          Galleria.loadTheme('scripts/themes/classic/galleria.classic.min.js');
-          Galleria.run('.galleria');
       },
       error: function(error) {
         console.log("Error: " + error.code + " " + error.message);
       }
     });
+}
+
+function formatAMPM(date) {
+  var hours = date.getHours();
+  var minutes = date.getMinutes();
+  var ampm = hours >= 12 ? 'pm' : 'am';
+  hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+  minutes = minutes < 10 ? '0'+minutes : minutes;
+  var strTime = hours + ':' + minutes + ' ' + ampm;
+  return strTime;
 }
 
 function animateToBeers(beersLeft) {
