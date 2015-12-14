@@ -29,7 +29,7 @@ function loadGallery()
     var beerEntry = Parse.Object.extend("beerEntry");
     var query = new Parse.Query(beerEntry);
     query.descending("createdAt");
-    query.limit(15);
+    query.limit(30);
     query.find({
       success: function(results) {
         //got objects
@@ -41,7 +41,7 @@ function loadGallery()
           dateString+"'>";
           if(i==0)
           {
-            html = html +"<h3>Recent<br>Drinkers</h3>";
+            html = html +"<h3>Recent<br>Drinker<br>Gallery</h3>";
           }
           html = html+"</a>"; 
           $('#gallery').append(html);
