@@ -15,11 +15,16 @@ function getBeers()
       animateToBeers(value);
 
       //load images for gallery
-      //loadGallery();
+      loadNewGallery();
 
       //sparkcoreLogic.js to load all the other values
       loadAll();
     });
+}
+
+//this is where the gallery load would go...if we ever make a new backend
+function loadNewGallery() {
+
 }
 
 function loadGallery()
@@ -66,7 +71,7 @@ function formatAMPM(date) {
 
 function animateToBeers(beersLeft) {
   var height = window.innerHeight;
-  var point = Math.max(150,(height*0.7) * (beersLeft / 165.0));
+  var point = Math.max(150,(height*0.7) * (beersLeft / 83.0));
   point = Math.min(point,height*0.62);
 
   $('#liquid') // I Said Fill 'Er Up!

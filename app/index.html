@@ -58,8 +58,18 @@
     <!-- added this ref for animations -->
     <script type="text/javascript" src="https://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 
-    <!-- added this ref for Parse Queries -->
-    <script src="//www.parsecdn.com/js/parse-1.6.7.min.js"></script>
+    <!-- added this ref for Firebase Backend -->
+    <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyBbzfG8HC5xz397sEW3KTOrtobIJT---gY",
+        authDomain: "crackling-torch-423.firebaseapp.com",
+        databaseURL: "https://crackling-torch-423.firebaseio.com",
+        storageBucket: "crackling-torch-423.appspot.com",
+      };
+      firebase.initializeApp(config);
+    </script>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
     <script>
