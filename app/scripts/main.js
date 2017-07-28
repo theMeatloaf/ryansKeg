@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 function getBeers()
 {
-    var beerUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/beersLeft/?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+    var beerUrl = "https://api.particle.io/v1/devices/50ff6d065067545652220387/beersLeft/?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
 
     $.get(beerUrl, function(data, status){
       var value = data.result;
@@ -71,8 +71,12 @@ function formatAMPM(date) {
 
 function animateToBeers(beersLeft) {
   var height = window.innerHeight;
-  var point = Math.max(150,(height*0.7) * (beersLeft / 83.0));
-  point = Math.min(point,height*0.62);
+  var totalBeers = 55.0
+  var minHeight = 150.0
+  var maxHeight = (height * 0.70)
+  //calculate and put between min and max
+  var point = Math.max(minHeight,maxHeight * (beersLeft / totalBeers));
+  point = Math.min(point,maxHeight);
 
   $('#liquid') // I Said Fill 'Er Up!
     .delay(1000)
