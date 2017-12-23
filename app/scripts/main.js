@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 function getBeers()
 {
-    var beerUrl = "https://api.particle.io/v1/devices/50ff6d065067545652220387/beersLeft/?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+    var beerUrl = "https://api.particle.io/v1/devices/200033001447343339383037/beersLeft/?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
 
     $.get(beerUrl, function(data, status){
       var value = data.result;
@@ -71,7 +71,7 @@ function formatAMPM(date) {
 
 function animateToBeers(beersLeft) {
   var height = window.innerHeight;
-  var totalBeers = 55.0
+  var totalBeers = 50.0
   var minHeight = 150.0
   var maxHeight = (height * 0.70)
   //calculate and put between min and max

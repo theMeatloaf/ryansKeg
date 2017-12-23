@@ -12,7 +12,7 @@ var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
           {
               leftValue = null;
 
-              var tempUrl = "https://api.particle.io/v1/devices/50ff6d065067545652220387/temperature?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+              var tempUrl = "https://api.particle.io/v1/devices/200033001447343339383037/temperature?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
 
               $.get(tempUrl, function(data, status){
                 if (leftValue) {
@@ -30,7 +30,7 @@ var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
 
           function getFridgeStatus(withHoldTemp)
           {
-              var statusUrl = "https://api.particle.io/v1/devices/50ff6d065067545652220387/fridgeStatus?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+              var statusUrl = "https://api.particle.io/v1/devices/200033001447343339383037/fridgeStatus?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
 
               $.get(statusUrl, function(data, status){
                 if(data.result == true)
@@ -66,7 +66,7 @@ var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
 
           function getHoldTemp()
           {
-              var holdUrl = "https://api.particle.io/v1/devices/50ff6d065067545652220387/goalTemp?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+              var holdUrl = "https://api.particle.io/v1/devices/200033001447343339383037/goalTemp?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
 
               $.get(holdUrl, function(data, status){
               var value = data.result;
