@@ -10,15 +10,25 @@
   <!-- endbuild -->
 </head>
 
-<body>
+<body onload="getStatuses()">
   <div class="container-fluid" >
-    <br>
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center"><img src="../images/load.gif" id="loader" style="visibility:hidden;"></div>
       <div class="col-md-4"></div>
     </div>
-    <br>
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4" align="center"><h3 id="powerStatusHeader"></h3></div>
+      <div class="col-md-4"></div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-4"></div>
+      <div class="col-md-4" align="center"><h3 id="econStatusHeader"></h3></div>
+      <div class="col-md-4"></div>
+    </div>
+
     <div class="row">
       <div class="col-md-4"></div>
       <div class="col-md-4" align="center"><button class="btn btn-danger btn-lg" type="button" id="powerButt"><h1>TOGGLE POWER</h1></button></div>
@@ -29,22 +39,12 @@
 
     <div class="row">
       <div class="col-md-4"></div>
-      <div class="col-md-4" align="center"><button class="btn btn-info btn-lg" type="button" id="coolButt"><h1>SET COOL MODE</h1></button></div>
-      <div class="col-md-4"></div>
-    </div>
-
-    <br>
-
-    <div class="row">
-      <div class="col-md-4"></div>
-      <div class="col-md-4" align="center"><button class="btn btn-warning btn-lg" type="button" id="econButt"><h1>SET ECON MODE</h1></button>
+      <div class="col-md-4" align="center"><button class="btn btn-warning btn-lg" type="button" id="econButt"><h1>TOGGLE ECON</h1></button>
       </div>
       <div class="col-md-4"></div>
     </div>
 
   </div>
-
-
 
 
   <!-- build:js(.) ../scripts/vendor.js -->
@@ -57,23 +57,51 @@
       event.preventDefault();
   });
 
-  $( "#coolButt" ).click(function( event ) {
-      runSparkFunction("setModeCool");
-      event.preventDefault();
-  });
-
   $( "#econButt" ).click(function( event ) {
-      runSparkFunction("setModeEcon");
+      runSparkFunction("toggleEcon");
       event.preventDefault();
   });
 
-  function runSparkFunction(functionName)
-  {
+  function getStatuses() {
+    getEconStatus()
+    getPowerStatus()
+  }
+
+  function getEconStatus() {
     $(".btn").prop('disabled', true);
     $("#loader").css('visibility', 'visible');
-    var setTempUrl = "https://api.spark.io/v1/devices/200033001447343339383037/" + functionName + "?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+    var url = "https://api.spark.io/v1/devices/50ff6d065067545652220387/isEconOn?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+   $.get(url,
+    function(data,status){
+        var isOn = data.result == true ? "ON" : "OFF"
+        $("#econStatusHeader").html("<b>ECON STATUS:</b>"+isOn)
+
+        $("#loader").css('visibility', 'hidden');
+        $(".btn").prop('disabled', false);
+    });
+  }
+
+  function getPowerStatus() {
+    $(".btn").prop('disabled', true);
+    $("#loader").css('visibility', 'visible');
+    var url = "https://api.spark.io/v1/devices/50ff6d065067545652220387/isPowerOn?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+   $.get(url,
+    function(data,status){
+        var isOn = data.result == true ? "ON" : "OFF"
+        $("#powerStatusHeader").html("<b>POWER STATUS:</b>"+isOn)
+
+        $("#loader").css('visibility', 'hidden');
+        $(".btn").prop('disabled', false);
+    });
+  }
+
+  function runSparkFunction(functionName) {
+    $(".btn").prop('disabled', true);
+    $("#loader").css('visibility', 'visible');
+    var setTempUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/" + functionName + "?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
    $.post(setTempUrl,
     function(data,status){
+        getStatuses();
         $("#loader").css('visibility', 'hidden');
         $(".btn").prop('disabled', false);
     });

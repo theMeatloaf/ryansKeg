@@ -71,7 +71,7 @@ function formatAMPM(date) {
 
 function animateToBeers(beersLeft) {
   var height = window.innerHeight;
-  var totalBeers = 50.0
+  var totalBeers = 55.0
   var minHeight = 150.0
   var maxHeight = (height * 0.70)
   //calculate and put between min and max

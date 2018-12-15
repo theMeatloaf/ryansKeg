@@ -1,5 +1,6 @@
 {
   "projects": {
-    "liveSite": "crackling-torch-423"
+    "liveSite": "crackling-torch-423",
+    "default": "crackling-torch-423"
   }
 }
