@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <link rel="shortcut icon" href="/favicon.ico">
     <!-- build:css(.) ../styles/vendor.css -->
-    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css" />
     <!-- endbuild -->
     <body onload="populateFields();">
     </head>
@@ -31,13 +31,13 @@
 
 
 	<!-- build:js(.) ../scripts/vendor.js -->
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../node_modules/jquery/dist/jquery.js"></script>
     <!-- endbuild -->
 
     <script >
     	$( "#theForm" ).submit(function( event ) {
     	   var temp = $("#temp").val();
-    	   var setTempUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/setHoldTemp?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+    	   var setTempUrl = "https://api.particle.io/v1/devices/200033001447343339383037/setHoldTemp?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
            $.post(setTempUrl,
             {
                 args: temp
@@ -56,7 +56,7 @@
 
         function populateFields()
         {
-            var tempUrl = "https://api.spark.io/v1/devices/50ff6d065067545652220387/goalTemp?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+            var tempUrl = "https://api.particle.io/v1/devices/200033001447343339383037/goalTemp?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
 
             $.get(tempUrl, function(data, status){
                $( "#temp" ).val(data.result);

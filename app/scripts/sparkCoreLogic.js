@@ -1,7 +1,7 @@
 'use strict';
 
 var leftValue;
-var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
+var LoadingSpinner = '<img src=\'images/load.gif\' class=\'loader\'>';
 
           function loadAll()
           {
@@ -12,16 +12,16 @@ var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
           {
               leftValue = null;
 
-              var tempUrl = "https://api.particle.io/v1/devices/200033001447343339383037/temperature?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+              var tempUrl = 'https://api.particle.io/v1/devices/200033001447343339383037/temperature?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7';
 
               $.get(tempUrl, function(data, status){
                 if (leftValue) {
-                  leftValue = data.result +"&deg;F" + leftValue;
+                  leftValue = data.result +'&deg;F' + leftValue;
                 }else
                 {
-                  leftValue = data.result +"&deg;F";
+                  leftValue = data.result +'&deg;F';
                 }
-                if(leftValue.length>95)$("#Ctemp").html(leftValue);
+                if(leftValue.length>95)$('#Ctemp').html(leftValue);
               
                 getFridgeStatus(withHoldTemp);
               });
@@ -30,12 +30,12 @@ var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
 
           function getFridgeStatus(withHoldTemp)
           {
-              var statusUrl = "https://api.particle.io/v1/devices/200033001447343339383037/fridgeStatus?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+              var statusUrl = 'https://api.particle.io/v1/devices/200033001447343339383037/fridgeStatus?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7';
 
               $.get(statusUrl, function(data, status){
                 if(data.result == true)
                 {
-                  var downArrow = "<font color='blue'><span class='glyphicon glyphicon-arrow-down' aria-hidden='true'></span></font>";
+                  var downArrow = '<font color=\'blue\'><span class=\'glyphicon glyphicon-arrow-down\' aria-hidden=\'true\'></span></font>';
                   if(leftValue)
                   {
                     leftValue = leftValue + downArrow;
@@ -45,7 +45,7 @@ var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
                   }
                 }else
                 {
-                  var upArrow = "<font color='red'><span class='glyphicon glyphicon-arrow-up' aria-hidden='true'></span></font>";
+                  var upArrow = '<font color=\'red\'><span class=\'glyphicon glyphicon-arrow-up\' aria-hidden=\'true\'></span></font>';
                    if(leftValue)
                   {
                     leftValue = leftValue + upArrow;
@@ -54,7 +54,7 @@ var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
                     leftValue = upArrow;
                   }
                 }
-                if(leftValue.length>95)$("#Ctemp").html(leftValue);
+                if(leftValue.length>95)$('#Ctemp').html(leftValue);
               
                 if (withHoldTemp)
                 {
@@ -66,12 +66,12 @@ var LoadingSpinner = "<img src='images/load.gif' class='loader'>";
 
           function getHoldTemp()
           {
-              var holdUrl = "https://api.particle.io/v1/devices/200033001447343339383037/goalTemp?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+              var holdUrl = 'https://api.particle.io/v1/devices/200033001447343339383037/goalTemp?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7';
 
               $.get(holdUrl, function(data, status){
               var value = data.result;
               value = Number(value).toFixed(0);
-                $("#Htemp").html("&nbsp;<font color='gray'>"+ value +"&deg;F</font>");
+                $('#Htemp').html('&nbsp;<font color=\'gray\'>'+ value +'&deg;F</font>');
               });
           
               return;

@@ -7,7 +7,7 @@ $(document).ready(function() {
 
 function getBeers()
 {
-    var beerUrl = "https://api.particle.io/v1/devices/200033001447343339383037/beersLeft/?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7";
+    var beerUrl = 'https://api.particle.io/v1/devices/200033001447343339383037/beersLeft/?access_token=cba42504f82d35acb0c6b4aba1a829ca392919e7';
 
     $.get(beerUrl, function(data, status){
       var value = data.result;
@@ -29,31 +29,31 @@ function loadNewGallery() {
 
 function loadGallery()
 {
-    Parse.initialize("BbItMQIZYMRPVXCHHp7veIWVtjsfRoG7U0QA3tZg", "Wcseuh8TpmsTm7cYPmSkFF9oBVtlLG5BtRlYgXjM");
+    Parse.initialize('BbItMQIZYMRPVXCHHp7veIWVtjsfRoG7U0QA3tZg', 'Wcseuh8TpmsTm7cYPmSkFF9oBVtlLG5BtRlYgXjM');
   
-    var beerEntry = Parse.Object.extend("beerEntry");
+    var beerEntry = Parse.Object.extend('beerEntry');
     var query = new Parse.Query(beerEntry);
-    query.descending("createdAt");
+    query.descending('createdAt');
     query.limit(30);
     query.find({
       success: function(results) {
         //got objects
         for (var i = 0; i < results.length; i++) {
           var object = results[i];
-          var date = object.get("createdAt");
+          var date = object.get('createdAt');
           var dateString = date.toLocaleString('en-US');
-          var html = "<a href='" + object.get("image").url() + "' data-lightbox='gallery' data-title='"+
-          dateString+"'>";
+          var html = '<a href=\'' + object.get('image').url() + '\' data-lightbox=\'gallery\' data-title=\''+
+          dateString+'\'>';
           if(i==0)
           {
-            html = html +"<h3>Recent<br>Drinker<br>Gallery</h3>";
+            html = html +'<h3>Recent<br>Drinker<br>Gallery</h3>';
           }
-          html = html+"</a>"; 
+          html = html+'</a>'; 
           $('#gallery').append(html);
         }
       },
       error: function(error) {
-        console.log("Error: " + error.code + " " + error.message);
+        console.log('Error: ' + error.code + ' ' + error.message);
       }
     });
 }
@@ -98,7 +98,7 @@ function animateToBeers(beersLeft) {
             easing:'easeOutCubic',
             progress: function(animation, progress) {
                 var curVal = Number(progress*beersLeft).toFixed(0);
-               $("#Nbeers").html("&nbsp&nbsp"+curVal +" Beers Left &nbsp;&nbsp;");
+               $('#Nbeers').html('&nbsp&nbsp'+curVal +' Beers Left &nbsp;&nbsp;');
             }
       });
 }
