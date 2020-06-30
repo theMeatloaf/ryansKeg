@@ -55,7 +55,7 @@ function lintTest() {
 };
 
 function html() {
-  return src('app/*.html')
+  return src(['app/*.html', 'app/admin/*.html'], {base: 'app/'})
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
     .pipe($.if(/\.js$/, $.uglify({compress: {drop_console: true}})))
     .pipe($.if(/\.css$/, $.postcss([cssnano({safe: true, autoprefixer: false})])))
